@@ -42,7 +42,16 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserResponseDTO findByDocumentNumber(Integer documentNumber) {
+    public UserResponseDTO findByDocumentNumber(Integer documentNumber,String password) {
+
+        if (password == null){
+            throw new UserException(UserEnum.MANDATORY_PASSWORD);
+        }
+
+        if (userService.findByDocumentNumber(documentNumber) == null){
+            throw new UserException(UserEnum.THIS_EMAIL_IS_ALREADY_BEING_USED);
+        }
+        userService.validateUserPassword(password,documentNumber);
         return mapper.toDto(userService.findByDocumentNumber(documentNumber));
     }
 
