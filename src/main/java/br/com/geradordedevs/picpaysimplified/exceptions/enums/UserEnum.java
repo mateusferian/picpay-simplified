@@ -15,7 +15,7 @@ public enum UserEnum{
 
     THIS_CPF_IS_ALREADY_BEING_USED("THIS_CPF_IS_ALREADY_BEING_USED", "This document number is already being used",400),
 
-    INVALID_USERNAME_OR_PASSWORD("INVALID_USERNAME_OR_PASSWORD", "Username or password is invalid",400);
+    MANDATORY_PASSWORD("MANDATORY_PASSWORD", "Required password",401);
 
     private String code;
     private String message;
