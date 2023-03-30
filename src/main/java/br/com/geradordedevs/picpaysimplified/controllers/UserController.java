@@ -23,8 +23,9 @@ public class UserController {
     }
 
     @GetMapping("/{documentNumber}")
-    public ResponseEntity<UserResponseDTO> findByDocumentNumber(@PathVariable Integer documentNumber){
-        return new ResponseEntity(userFacade.findByDocumentNumber(documentNumber),HttpStatus.OK);
+    public ResponseEntity<UserResponseDTO> findByDocumentNumber(@PathVariable Integer documentNumber,
+                                                                @RequestParam(required = false, value = "password") String password){
+        return new ResponseEntity(userFacade.findByDocumentNumber(documentNumber,password),HttpStatus.OK);
     }
 
     @PostMapping("/deposit")
