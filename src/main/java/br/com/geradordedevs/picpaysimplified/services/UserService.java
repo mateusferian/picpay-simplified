@@ -5,7 +5,7 @@ import br.com.geradordedevs.picpaysimplified.entities.UserEntity;
 
 public interface UserService {
     UserEntity save(UserEntity userEntity);
-    void validateUserPassword( String getPassword, Integer getProtractorDocumentNumber);
+    void validateUserPassword( String getPassword, Integer documentNumber);
     UserEntity findByDocumentNumber(Integer documentNumber);
     UserEntity deposit(DepositRequestDTO depositRequestDTO);
     UserEntity findByEmail(String email);

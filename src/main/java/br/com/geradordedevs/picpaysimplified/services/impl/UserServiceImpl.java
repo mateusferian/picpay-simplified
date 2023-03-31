@@ -32,9 +32,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void validateUserPassword( String password,Integer protractorDocumentNumber){
+    public void validateUserPassword( String password,Integer documentNumber){
 
-        UserEntity userEntity = userRepository.findByDocumentNumber(protractorDocumentNumber);
+        UserEntity userEntity = userRepository.findByDocumentNumber(documentNumber);
         if (userEntity == null ||
                 !passwordEncoder.matches(password,userEntity.getPassword())){
             log.warn("document number or password is invalid");
