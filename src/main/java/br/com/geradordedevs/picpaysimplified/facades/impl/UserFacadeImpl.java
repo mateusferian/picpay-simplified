@@ -26,13 +26,13 @@ public class UserFacadeImpl implements UserFacade {
     public UserResponseDTO save(UserRequestDTO userRequestDTO) {
 
         if (userService.findByEmail(userRequestDTO.getEmail()) != null && userService.findByDocumentNumber(userRequestDTO.getDocumentNumber()) != null) {
-            throw new UserException(UserEnum.THIS_EMAIL_AND_CPF_IS_ALREADY_BEING_USED);
+            throw new UserException(UserEnum.DOCUMENT_NUMBER_AND_EXISTING_EMAIL);
 
         } else if (userService.findByEmail(userRequestDTO.getEmail()) != null) {
             throw new UserException(UserEnum.THIS_EMAIL_IS_ALREADY_BEING_USED);
 
         } else if (userService.findByDocumentNumber(userRequestDTO.getDocumentNumber()) != null) {
-            throw new UserException(UserEnum.THIS_CPF_IS_ALREADY_BEING_USED);
+            throw new UserException(UserEnum.DOCUMENT_NUMBER_EXISTING);
 
         } else {
             return mapper.toDto(userService.save(mapper.toEntity(userRequestDTO)));
