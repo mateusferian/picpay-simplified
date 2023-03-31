@@ -30,13 +30,4 @@ public class UserMapper {
         log.info("converting entity{} to dto", userEntity);
         return mapper.map(userEntity,UserResponseDTO.class);
     }
-
-    public List<UserResponseDTO> toDtoList(Iterable<UserEntity> userEntity){
-        log.info("converting entity list{} to dto list", userEntity);
-        List<UserEntity> userEntities = new ArrayList<>();
-        userEntity.forEach(userEntities::add);
-        return userEntities.stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
 }
