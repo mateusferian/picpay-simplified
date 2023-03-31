@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = userRepository.findByDocumentNumber(protractorDocumentNumber);
         if (userEntity == null ||
                 !passwordEncoder.matches(password,userEntity.getPassword())){
-            log.warn("email document number or password {} is invalid",userEntity.getEmail());
+            log.warn("document number or password is invalid");
             throw new TransferException(TransferEnum.INVALID_DOCUMENT_NUMBER_OR_PASSWORD);
         }
     }
