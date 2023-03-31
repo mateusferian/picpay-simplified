@@ -46,19 +46,12 @@ public class UserFacadeImpl implements UserFacade {
             throw new UserException(UserEnum.MANDATORY_PASSWORD);
         }
 
-        if (userService.findByDocumentNumber(documentNumber) == null){
-            throw new UserException(UserEnum.THIS_EMAIL_IS_ALREADY_BEING_USED);
-        }
         userService.validateUserPassword(password,documentNumber);
         return mapper.toDto(userService.findByDocumentNumber(documentNumber));
     }
 
     @Override
     public UserResponseDTO deposit(DepositRequestDTO depositRequestDTO) {
-
-        if (userService.findByDocumentNumber(depositRequestDTO.getDocumentNumber()) == null){
-            throw new TransferException(TransferEnum.DOCUMENT_NUMBER_NOT_FOUND);
-        }
 
         userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getDocumentNumber());
         return mapper.toDto(userService.deposit(depositRequestDTO));
