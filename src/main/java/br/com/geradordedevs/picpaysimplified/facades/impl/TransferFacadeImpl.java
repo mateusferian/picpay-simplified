@@ -24,9 +24,13 @@ public class TransferFacadeImpl implements TransferFacade {
 
     @Override
     public TransferResponseDTO transfer(TransferRequestDTO transferRequestDTO) {
-        userService.validateUserPassword(transferRequestDTO.getPassword(),transferRequestDTO.getPayerDocumentNumber());
 
-        if (userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()).getTypeOfUser() == TypeOfUser.SHOPKEEPER){
+        if (userService.findByDocumentNumber(transferRequestDTO.getPayeeDocumentNumber()) == null ||
+                userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()) == null) {
+
+            throw new TransferException(TransferEnum.INCORRECT_DOCUMENT_NUMBER);
+
+        } else if (userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()).getTypeOfUser() == TypeOfUser.SHOPKEEPER){
 
             throw new TransferException(TransferEnum.INCORRECT_USER_TYPE);
 
@@ -34,12 +38,8 @@ public class TransferFacadeImpl implements TransferFacade {
 
             throw new TransferException(TransferEnum.NEGATIVE_BALANCE);
 
-        } else if (userService.findByDocumentNumber(transferRequestDTO.getPayeeDocumentNumber()) == null ||
-                userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()) == null) {
-
-            throw new TransferException(TransferEnum.INCORRECT_DOCUMENT_NUMBER);
-
         } else {
+            userService.validateUserPassword(transferRequestDTO.getPassword(),transferRequestDTO.getPayerDocumentNumber());
             return transferService.transfer(transferRequestDTO);
         }
     }
