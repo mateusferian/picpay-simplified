@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorResponse {
-    private  Long timestamp;
+    private Long timestamp;
     private Integer status;
     private String code;
     private String message;
