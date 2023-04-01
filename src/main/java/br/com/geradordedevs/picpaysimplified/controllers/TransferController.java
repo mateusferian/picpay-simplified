@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/transfers")
 public class TransferController {
@@ -16,7 +18,7 @@ public class TransferController {
     private TransferFacade transferFacade;
 
     @PostMapping
-    public ResponseEntity<TransferResponseDTO> transfer(@RequestBody TransferRequestDTO transferRequestDTO){
+    public ResponseEntity<TransferResponseDTO> transfer(@Valid @RequestBody TransferRequestDTO transferRequestDTO){
         return new ResponseEntity(transferFacade.transfer(transferRequestDTO),HttpStatus.OK);
     }
 }

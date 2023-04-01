@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -18,7 +20,7 @@ public class UserController {
     private UserFacade userFacade;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> save(@RequestBody UserRequestDTO userRequestDTO){
+    public ResponseEntity<UserResponseDTO> save(@Valid @RequestBody UserRequestDTO userRequestDTO){
         return new ResponseEntity(userFacade.save(userRequestDTO),HttpStatus.CREATED);
     }
 
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/deposit")
-    public ResponseEntity<DepositResponseDTO> deposit(@RequestBody DepositRequestDTO depositRequestDTO){
+    public ResponseEntity<DepositResponseDTO> deposit(@Valid @RequestBody DepositRequestDTO depositRequestDTO){
         return new ResponseEntity(userFacade.deposit(depositRequestDTO),HttpStatus.OK);
     }
 }
