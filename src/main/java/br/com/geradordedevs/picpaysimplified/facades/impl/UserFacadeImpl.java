@@ -55,7 +55,7 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public UserResponseDTO deposit(DepositRequestDTO depositRequestDTO) {
 
-        userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getPayer());
+        userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getUser());
         return mapper.toDto(userService.deposit(depositRequestDTO));
     }
 }
