@@ -25,21 +25,16 @@ public class TransferFacadeImpl implements TransferFacade {
     @Override
     public TransferResponseDTO transfer(TransferRequestDTO transferRequestDTO) {
 
-        if (userService.findByDocumentNumber(transferRequestDTO.getPayeeDocumentNumber()) == null ||
-                userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()) == null) {
-
-            throw new TransferException(TransferEnum.INCORRECT_DOCUMENT_NUMBER);
-
-        } else if (userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()).getTypeOfUser() == TypeOfUser.SHOPKEEPER){
+        if (userService.findById(transferRequestDTO.getPayer()).getTypeOfUser() == TypeOfUser.SHOPKEEPER){
 
             throw new TransferException(TransferEnum.INCORRECT_USER_TYPE);
 
-        } else if (userService.findByDocumentNumber(transferRequestDTO.getPayerDocumentNumber()).getValue().doubleValue() <= 0) {
+        } else if (userService.findById(transferRequestDTO.getPayer()).getValue().doubleValue() <= 0) {
 
             throw new TransferException(TransferEnum.NEGATIVE_BALANCE);
 
         } else {
-            userService.validateUserPassword(transferRequestDTO.getPassword(),transferRequestDTO.getPayerDocumentNumber());
+            userService.validateUserPassword(transferRequestDTO.getPassword(),transferRequestDTO.getPayer());
             return transferService.transfer(transferRequestDTO);
         }
     }
