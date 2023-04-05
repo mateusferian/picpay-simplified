@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         if (userEntity == null ||
                 !passwordEncoder.matches(password,userEntity.getPassword())){
             log.warn("payer or password is invalid");
-            throw new TransferException(TransferEnum.INVALID_USER_OR_PASSWORD);
+            throw new UserException(UserEnum.INVALID_USER_OR_PASSWORD);
         }
     }
 
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity deposit(DepositRequestDTO depositRequestDTO){
         log.info("making deposit");
-        UserEntity userEntity = findById(depositRequestDTO.getPayer());
+        UserEntity userEntity = findById(depositRequestDTO.getUser());
         userEntity.setValue( new BigDecimal(String.valueOf(userEntity.getValue())).add(depositRequestDTO.getDepositAmount()));
 
         return userRepository.save(userEntity);
