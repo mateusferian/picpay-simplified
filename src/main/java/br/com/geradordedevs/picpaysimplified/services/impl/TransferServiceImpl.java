@@ -58,4 +58,21 @@ public class TransferServiceImpl implements TransferService {
 
         userRepository.save(userEntity);
     }
+
+    @Override
+    public void validatePayerPassword( String password,Long id) {
+
+        UserEntity userEntity = findByIdPayer(id);
+        if (userEntity == null ||
+                !passwordEncoder.matches(password, userEntity.getPassword())) {
+            log.warn("payer or password is invalid");
+            throw new TransferException(TransferEnum.INVALID_PAYER_OR_PASSWORD);
+        }
+    }
+
+    @Override
+    public UserEntity findByIdPayer(Long id) {
+        log.info("getting user information {}", id);
+        return userRepository.findById(id).orElseThrow(() -> new TransferException(TransferEnum.PAYER_NOT_FOUND));
+    }
 }

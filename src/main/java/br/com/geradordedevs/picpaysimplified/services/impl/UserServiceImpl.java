@@ -64,4 +64,10 @@ public class UserServiceImpl implements UserService {
         log.info("find user by email");
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public UserEntity findById(Long id) {
+        log.info("getting user information {}", id);
+        return userRepository.findById(id).orElseThrow(() -> new UserException(UserEnum.USER_NOT_FOUND));
+    }
 }
