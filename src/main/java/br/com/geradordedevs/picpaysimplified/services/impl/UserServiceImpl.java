@@ -3,7 +3,9 @@ package br.com.geradordedevs.picpaysimplified.services.impl;
 import br.com.geradordedevs.picpaysimplified.dtos.requests.DepositRequestDTO;
 import br.com.geradordedevs.picpaysimplified.entities.UserEntity;
 import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
+import br.com.geradordedevs.picpaysimplified.exceptions.UserException;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
+import br.com.geradordedevs.picpaysimplified.exceptions.enums.UserEnum;
 import br.com.geradordedevs.picpaysimplified.repositories.UserRepository;
 import br.com.geradordedevs.picpaysimplified.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +34,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void validateUserPassword( String password,Integer documentNumber){
+    public void validateUserPassword( String password,Long id){
 
-        UserEntity userEntity = userRepository.findByDocumentNumber(documentNumber);
+        UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new UserException(UserEnum.USER_NOT_FOUND));
         if (userEntity == null ||
                 !passwordEncoder.matches(password,userEntity.getPassword())){
-            log.warn("document number or password is invalid");
-            throw new TransferException(TransferEnum.INVALID_DOCUMENT_NUMBER_OR_PASSWORD);
+            log.warn("payer or password is invalid");
+            throw new TransferException(TransferEnum.INVALID_USER_OR_PASSWORD);
         }
     }
 
@@ -51,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserEntity deposit(DepositRequestDTO depositRequestDTO){
         log.info("making deposit");
-        UserEntity userEntity = userRepository.findByDocumentNumber(depositRequestDTO.getDocumentNumber());
+        UserEntity userEntity = findById(depositRequestDTO.getPayer());
         userEntity.setValue( new BigDecimal(String.valueOf(userEntity.getValue())).add(depositRequestDTO.getDepositAmount()));
 
         return userRepository.save(userEntity);
