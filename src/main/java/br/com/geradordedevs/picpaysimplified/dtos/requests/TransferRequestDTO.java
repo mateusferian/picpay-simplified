@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TransferRequestDTO {
 
+    @NotNull(message = "{null.field}")
     private Long payer;
 
     @NotBlank(message = "{white.field}")
@@ -22,5 +23,6 @@ public class TransferRequestDTO {
     @Max(value = 100000, message = "{above.the.maximum}")
     private BigDecimal transactionAmount;
 
+    @NotNull(message = "{null.field}")
     private Long payee;
 }

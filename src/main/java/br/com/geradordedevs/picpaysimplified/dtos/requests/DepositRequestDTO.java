@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class DepositRequestDTO {
 
+    @NotNull(message = "{null.field}")
     private Long user;
 
     @NotBlank(message = "{white.field}")
