@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UserFacade {
     UserResponseDTO save(UserRequestDTO userRequestDTO);
-    UserResponseDTO findByDocumentNumber(Integer documentNumber,String password);
+    UserResponseDTO findById(Long id,String password);
     UserResponseDTO deposit(DepositRequestDTO depositRequestDTO);
 }

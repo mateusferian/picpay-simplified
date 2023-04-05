@@ -10,10 +10,12 @@ import br.com.geradordedevs.picpaysimplified.exceptions.enums.UserEnum;
 import br.com.geradordedevs.picpaysimplified.facades.UserFacade;
 import br.com.geradordedevs.picpaysimplified.mappers.UserMapper;
 import br.com.geradordedevs.picpaysimplified.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class UserFacadeImpl implements UserFacade {
 
     @Autowired
@@ -40,20 +42,20 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserResponseDTO findByDocumentNumber(Integer documentNumber,String password) {
+    public UserResponseDTO findById(Long id,String password) {
 
         if (password == null){
             throw new UserException(UserEnum.MANDATORY_PASSWORD);
         }
 
-        userService.validateUserPassword(password,documentNumber);
-        return mapper.toDto(userService.findByDocumentNumber(documentNumber));
+        userService.validateUserPassword(password,id);
+        return mapper.toDto(userService.findById(id));
     }
 
     @Override
     public UserResponseDTO deposit(DepositRequestDTO depositRequestDTO) {
 
-        userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getDocumentNumber());
+        userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getPayer());
         return mapper.toDto(userService.deposit(depositRequestDTO));
     }
 }
