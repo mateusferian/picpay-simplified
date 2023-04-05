@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TransferRequestDTO {
 
-    private Integer payerDocumentNumber;
+    private Long payer;
 
     @NotBlank(message = "{white.field}")
     private String password;
@@ -22,5 +22,5 @@ public class TransferRequestDTO {
     @Max(value = 100000, message = "{above.the.maximum}")
     private BigDecimal transactionAmount;
 
-    private Integer payeeDocumentNumber;
+    private Long payee;
 }
