@@ -15,7 +15,11 @@ public enum UserEnum{
 
     DOCUMENT_NUMBER_EXISTING("DOCUMENT_NUMBER_EXISTING", "This document number is already being used",400),
 
-    MANDATORY_PASSWORD("MANDATORY_PASSWORD", "Required password",401);
+    MANDATORY_PASSWORD("MANDATORY_PASSWORD", "Required password",401),
+
+    USER_NOT_FOUND("USER_NOT_FOUND", "User not found",400),
+
+    INVALID_USER_OR_PASSWORD("INVALID_USER_OR_PASSWORD", "invalid user or password",400);
 
     private String code;
     private String message;
