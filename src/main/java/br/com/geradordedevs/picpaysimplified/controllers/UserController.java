@@ -24,10 +24,10 @@ public class UserController {
         return new ResponseEntity(userFacade.save(userRequestDTO),HttpStatus.CREATED);
     }
 
-    @GetMapping("/{documentNumber}")
-    public ResponseEntity<UserResponseDTO> findByDocumentNumber(@PathVariable Integer documentNumber,
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id,
                                                                 @RequestParam(required = false, value = "password") String password){
-        return new ResponseEntity(userFacade.findByDocumentNumber(documentNumber,password),HttpStatus.OK);
+        return new ResponseEntity(userFacade.findById(id,password),HttpStatus.OK);
     }
 
     @PostMapping("/deposit")
