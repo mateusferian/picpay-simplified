@@ -18,7 +18,7 @@ public class UserRequestDTO {
 
     private TypeOfUser typeOfUser;
 
-    private Integer documentNumber;
+    private String documentNumber;
 
     @NotNull(message = "{null.field}")
     @Email(message = "{invalid.email}")
