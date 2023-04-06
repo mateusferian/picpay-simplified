@@ -8,5 +8,5 @@ public interface UserRepository extends CrudRepository<UserEntity,Long> {
 
     UserEntity findByEmail(String email);
 
-    UserEntity findByDocumentNumber(Integer documentNumber);
+    UserEntity findByDocumentNumber(String documentNumber);
 }
