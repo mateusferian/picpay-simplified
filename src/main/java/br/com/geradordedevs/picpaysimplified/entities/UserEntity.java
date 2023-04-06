@@ -25,7 +25,7 @@ public class UserEntity {
 
     private TypeOfUser typeOfUser;
 
-    private Integer documentNumber;
+    private String documentNumber;
 
     private String email;
 
