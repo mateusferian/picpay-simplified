@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/deposit")
-    public ResponseEntity<DepositResponseDTO> deposit(@Valid @RequestBody DepositRequestDTO depositRequestDTO){
+    public ResponseEntity<UserResponseDTO> deposit(@Valid @RequestBody DepositRequestDTO depositRequestDTO){
         return new ResponseEntity(userFacade.deposit(depositRequestDTO),HttpStatus.OK);
     }
 }
