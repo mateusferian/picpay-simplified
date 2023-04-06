@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findByDocumentNumber(Integer documentNumber){
+    public UserEntity findByDocumentNumber(String documentNumber){
         log.info("find user by document number");
         return userRepository.findByDocumentNumber(documentNumber);
     }
