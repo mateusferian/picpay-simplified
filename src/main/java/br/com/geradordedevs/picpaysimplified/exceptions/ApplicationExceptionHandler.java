@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<ErrorObject> errors = getErrors(ex);
         ErrorResponse errorResponse = getErrorResponse( status, errors);
