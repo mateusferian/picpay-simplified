@@ -1,9 +1,8 @@
 package br.com.geradordedevs.picpaysimplified.controllers;
 
 import br.com.geradordedevs.picpaysimplified.dtos.requests.DepositRequestDTO;
-import br.com.geradordedevs.picpaysimplified.dtos.responses.DepositResponseDTO;
-import br.com.geradordedevs.picpaysimplified.dtos.responses.UserResponseDTO;
 import br.com.geradordedevs.picpaysimplified.dtos.requests.UserRequestDTO;
+import br.com.geradordedevs.picpaysimplified.dtos.responses.UserResponseDTO;
 import br.com.geradordedevs.picpaysimplified.facades.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
