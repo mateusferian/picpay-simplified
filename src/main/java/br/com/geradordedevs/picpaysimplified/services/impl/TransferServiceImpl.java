@@ -59,7 +59,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public void validatePayerPassword( String password,Long id) {
-
+        log.info("validating user password");
         UserEntity userEntity = findByIdPayer(id);
         if (userEntity == null ||
                 !passwordEncoder.matches(password, userEntity.getPassword())) {
