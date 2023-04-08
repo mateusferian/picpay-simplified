@@ -18,6 +18,8 @@ public class UserRequestDTO {
 
     private TypeOfUser typeOfUser;
 
+    @NotBlank(message = "{white.field}")
+    @Size(min = 11,max = 14, message = "{size.invalid}")
     private String documentNumber;
 
     @NotNull(message = "{null.field}")
