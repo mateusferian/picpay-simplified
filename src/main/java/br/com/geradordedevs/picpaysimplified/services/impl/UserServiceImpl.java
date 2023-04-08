@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void validateUserPassword( String password,Long id){
         log.info("validating user password");
-        UserEntity userEntity = userRepository.findById(id).orElseThrow(() -> new UserException(UserEnum.USER_NOT_FOUND));
+        UserEntity userEntity = findById(id);
         if (userEntity == null ||
                 !passwordEncoder.matches(password,userEntity.getPassword())){
             log.warn("payer or password is invalid");
