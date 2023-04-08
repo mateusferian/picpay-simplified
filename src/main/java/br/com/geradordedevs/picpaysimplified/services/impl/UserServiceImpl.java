@@ -2,9 +2,7 @@ package br.com.geradordedevs.picpaysimplified.services.impl;
 
 import br.com.geradordedevs.picpaysimplified.dtos.requests.DepositRequestDTO;
 import br.com.geradordedevs.picpaysimplified.entities.UserEntity;
-import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
 import br.com.geradordedevs.picpaysimplified.exceptions.UserException;
-import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.UserEnum;
 import br.com.geradordedevs.picpaysimplified.repositories.UserRepository;
 import br.com.geradordedevs.picpaysimplified.services.UserService;

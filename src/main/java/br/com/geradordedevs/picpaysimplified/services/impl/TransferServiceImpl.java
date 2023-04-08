@@ -5,9 +5,7 @@ import br.com.geradordedevs.picpaysimplified.dtos.requests.TransferRequestDTO;
 import br.com.geradordedevs.picpaysimplified.dtos.responses.TransferResponseDTO;
 import br.com.geradordedevs.picpaysimplified.entities.UserEntity;
 import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
-import br.com.geradordedevs.picpaysimplified.exceptions.UserException;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
-import br.com.geradordedevs.picpaysimplified.exceptions.enums.UserEnum;
 import br.com.geradordedevs.picpaysimplified.repositories.UserRepository;
 import br.com.geradordedevs.picpaysimplified.services.TransferService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +40,7 @@ public class TransferServiceImpl implements TransferService {
     private void transferringValue(TransferRequestDTO transferRequestDTO){
         log.info("transferring value");
 
-        UserEntity userEntity = userRepository.findById(transferRequestDTO.getPayee()).orElseThrow(() -> new TransferException(TransferEnum.PAYEE_NOT_FOUND));;
+        UserEntity userEntity = userRepository.findById(transferRequestDTO.getPayee()).orElseThrow(() -> new TransferException(TransferEnum.PAYEE_NOT_FOUND));
         BigDecimal value = new BigDecimal(String.valueOf((userEntity.getValue()))).add(transferRequestDTO.getTransactionAmount());
         userEntity.setValue(value);
 
