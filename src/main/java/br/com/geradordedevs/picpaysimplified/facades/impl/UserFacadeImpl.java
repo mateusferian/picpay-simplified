@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Size;
+
 @Component
 @Slf4j
 public class UserFacadeImpl implements UserFacade {
@@ -26,6 +28,8 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public UserResponseDTO save(UserRequestDTO userRequestDTO) {
+
+        userRequestDTO.setDocumentNumber(documentNumberFormatting(userRequestDTO.getDocumentNumber()));
 
         if (userService.findByEmail(userRequestDTO.getEmail()) != null && userService.findByDocumentNumber(userRequestDTO.getDocumentNumber()) != null) {
             throw new UserException(UserEnum.DOCUMENT_NUMBER_AND_EXISTING_EMAIL);
@@ -57,5 +61,11 @@ public class UserFacadeImpl implements UserFacade {
 
         userService.validateUserPassword(depositRequestDTO.getPassword(),depositRequestDTO.getUser());
         return mapper.toDto(userService.deposit(depositRequestDTO));
+    }
+
+    private String documentNumberFormatting(String documentNumber){
+        documentNumber = (documentNumber.replace(".","")
+                .replace("-","").replace("/","").replace(" ",""));
+        return documentNumber;
     }
 }
