@@ -3,9 +3,7 @@ package br.com.geradordedevs.picpaysimplified.facades.impl;
 import br.com.geradordedevs.picpaysimplified.dtos.requests.DepositRequestDTO;
 import br.com.geradordedevs.picpaysimplified.dtos.requests.UserRequestDTO;
 import br.com.geradordedevs.picpaysimplified.dtos.responses.UserResponseDTO;
-import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
 import br.com.geradordedevs.picpaysimplified.exceptions.UserException;
-import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.UserEnum;
 import br.com.geradordedevs.picpaysimplified.facades.UserFacade;
 import br.com.geradordedevs.picpaysimplified.mappers.UserMapper;
@@ -13,8 +11,6 @@ import br.com.geradordedevs.picpaysimplified.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.validation.constraints.Size;
 
 @Component
 @Slf4j
