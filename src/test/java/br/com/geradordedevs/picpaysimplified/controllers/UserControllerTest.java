@@ -79,47 +79,47 @@ public class UserControllerTest {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithNameNullFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithNameNullFromUserRequestDTO() {
         return new UserRequestDTO(null,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithDocumentNumberNullFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithDocumentNumberNullFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,null,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithEmailNullFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithEmailNullFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,null,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO RreturningObjectWithPasswordNullFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithPasswordNullFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,null);
     }
 
-    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfTheNameVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfTheNameVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME_ABOVE_THE_MAXIMUM,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfTheNameVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfTheNameVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME_BELOW_THE_MINIMUM,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfTheDocumentNumberVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfTheDocumentNumberVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER_ABOVE_THE_MAXIMUM,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfTheDocumentNumberVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfTheDocumentNumberVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER_BELOW_THE_MINIMUM,MOCK_EMAIL,MOCK_PASSWORD);
     }
 
-    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfThePasswordVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersAboveTheMaximumOfThePasswordVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD_ABOVE_THE_MAXIMUM);
     }
 
-    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfThePasswordVariableFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectWithCharactersBelowTheMinimumOfThePasswordVariableFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_EMAIL,MOCK_PASSWORD_BELOW_THE_MINIMUM);
     }
 
-    private UserRequestDTO returningObjectPassingEmailVariableWithInvalidEmailFromTransferRequestDTO() {
+    private UserRequestDTO returningObjectPassingEmailVariableWithInvalidEmailFromUserRequestDTO() {
         return new UserRequestDTO(MOCK_NAME,MOCK_TYPE_OF_USER,MOCK_DOCUMENT_NUMBER,MOCK_INVALID_EMAIL,MOCK_PASSWORD);
     }
 
@@ -127,15 +127,15 @@ public class UserControllerTest {
         return new DepositRequestDTO(MOCK_ID,MOCK_PASSWORD,MOCK_DEPOSIT_AMOUNT);
     }
 
-    private DepositRequestDTO returningObjectWithUserNullFromTransferRequestDTO() {
+    private DepositRequestDTO returningObjectWithUserNullFromDepositRequestDTO() {
         return new DepositRequestDTO(null,MOCK_PASSWORD,MOCK_DEPOSIT_AMOUNT);
     }
 
-    private DepositRequestDTO returningObjectWithPasswordNullFromTransferRequestDTO() {
+    private DepositRequestDTO returningObjectWithPasswordNullFromDepositRequestDTO() {
         return new DepositRequestDTO(MOCK_ID,null,MOCK_DEPOSIT_AMOUNT);
     }
 
-    private DepositRequestDTO returningObjectWithDepositAmountNullFromTransferRequestDTO() {
+    private DepositRequestDTO returningObjectWithDepositAmountNullFromDepositRequestDTO() {
         return new DepositRequestDTO(MOCK_ID,MOCK_PASSWORD,null);
     }
 
@@ -167,7 +167,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithNameNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithNameNullFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -176,7 +176,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithDocumentNumberNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithDocumentNumberNullFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -185,7 +185,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithEmailNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithEmailNullFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -194,7 +194,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(RreturningObjectWithPasswordNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithPasswordNullFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -203,7 +203,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfTheNameVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfTheNameVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -212,7 +212,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfTheNameVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfTheNameVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -221,7 +221,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfTheDocumentNumberVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfTheDocumentNumberVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -230,7 +230,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfTheDocumentNumberVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfTheDocumentNumberVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -239,7 +239,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfThePasswordVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersAboveTheMaximumOfThePasswordVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -248,7 +248,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfThePasswordVariableFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithCharactersBelowTheMinimumOfThePasswordVariableFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -257,7 +257,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectPassingEmailVariableWithInvalidEmailFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectPassingEmailVariableWithInvalidEmailFromUserRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -275,7 +275,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE_DEPOSIT)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithUserNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithUserNullFromDepositRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -284,7 +284,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE_DEPOSIT)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithPasswordNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithPasswordNullFromDepositRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
@@ -293,7 +293,7 @@ public class UserControllerTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         mockMvc.perform(post(USER_ROUTE_DEPOSIT)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(ow.writeValueAsString(returningObjectWithDepositAmountNullFromTransferRequestDTO()))
+                .content(ow.writeValueAsString(returningObjectWithDepositAmountNullFromDepositRequestDTO()))
         ).andExpect(status().isBadRequest());
     }
 
