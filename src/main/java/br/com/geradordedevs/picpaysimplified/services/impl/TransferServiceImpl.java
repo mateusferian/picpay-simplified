@@ -7,6 +7,7 @@ import br.com.geradordedevs.picpaysimplified.entities.UserEntity;
 import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
 import br.com.geradordedevs.picpaysimplified.repositories.UserRepository;
+import br.com.geradordedevs.picpaysimplified.services.EmailService;
 import br.com.geradordedevs.picpaysimplified.services.TransferService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class TransferServiceImpl implements TransferService {
     @Autowired
     private MockyClient mockyClient;
 
+    @Autowired
+    private EmailService emailService;
+
     @Override
     public TransferResponseDTO transfer(TransferRequestDTO transferRequestDTO) {
         log.info("processing the transfer");
@@ -43,7 +47,7 @@ public class TransferServiceImpl implements TransferService {
         UserEntity userEntity = userRepository.findById(transferRequestDTO.getPayee()).orElseThrow(() -> new TransferException(TransferEnum.PAYEE_NOT_FOUND));
         BigDecimal value = new BigDecimal(String.valueOf((userEntity.getValue()))).add(transferRequestDTO.getTransactionAmount());
         userEntity.setValue(value);
-
+        emailService.sendEmail(userEntity.getEmail(),transferRequestDTO.getTransactionAmount(),findByIdPayer(transferRequestDTO.getPayer()).getName());
         userRepository.save(userEntity);
     }
 
