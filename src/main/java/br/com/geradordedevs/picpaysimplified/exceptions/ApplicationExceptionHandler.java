@@ -66,4 +66,15 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
                         ex.getError().getCode(),
                         ex.getMessage(), new ArrayList<>())));
     }
+
+    @ResponseBody
+    @ExceptionHandler(EmailException.class)
+    ResponseEntity<ErrorResponse> handlerEmailException(EmailException ex){
+        return  ResponseEntity.status(ex.getError().getStatusCode())
+                .body((new ErrorResponse(
+                        Instant.now().toEpochMilli(),
+                        ex.getError().getStatusCode(),
+                        ex.getError().getCode(),
+                        ex.getMessage(), new ArrayList<>())));
+    }
 }
