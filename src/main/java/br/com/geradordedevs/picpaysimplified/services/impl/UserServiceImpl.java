@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(UserEntity userEntity) {
-        log.info("registering a new user{}",userEntity);
+        log.info("registering a new user {}",userEntity);
         userEntity.setValue(new BigDecimal(0));
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findById(Long id) {
-        log.info("getting user information {}", id);
+        log.info("getting user information");
         return userRepository.findById(id).orElseThrow(() -> new UserException(UserEnum.USER_NOT_FOUND));
     }
 }

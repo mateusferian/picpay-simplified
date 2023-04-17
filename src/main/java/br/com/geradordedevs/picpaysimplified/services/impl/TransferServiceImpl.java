@@ -63,7 +63,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public void validatePayerPassword( String password,Long id) {
-        log.info("validating user password");
+        log.info("validating payer password");
         UserEntity userEntity = findByIdPayer(id);
         if (userEntity == null ||
                 !passwordEncoder.matches(password, userEntity.getPassword())) {
@@ -74,7 +74,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public UserEntity findByIdPayer(Long id) {
-        log.info("getting user information {}", id);
+        log.info("getting payer information");
         return userRepository.findById(id).orElseThrow(() -> new TransferException(TransferEnum.PAYER_NOT_FOUND));
     }
 }
