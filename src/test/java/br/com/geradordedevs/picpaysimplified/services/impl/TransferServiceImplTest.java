@@ -8,6 +8,7 @@ import br.com.geradordedevs.picpaysimplified.enums.TypeOfUser;
 import br.com.geradordedevs.picpaysimplified.exceptions.TransferException;
 import br.com.geradordedevs.picpaysimplified.exceptions.enums.TransferEnum;
 import br.com.geradordedevs.picpaysimplified.repositories.UserRepository;
+import br.com.geradordedevs.picpaysimplified.services.EmailService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,6 +40,9 @@ public class TransferServiceImplTest {
 
     @Mock
     private MockyClient mockyClient;
+
+    @Mock
+    private EmailService emailService;
 
     private final String MOCK_DOCUMENT_NUMBER = "1234567890";
 
@@ -84,6 +88,7 @@ public class TransferServiceImplTest {
     public void transferMustReturnOk() throws Exception {
         assertEquals(returnObjectTransferResponseDTO(),transferService.transfer(returnObjectTransferRequestDTO()));
         verify(userRepository,timeout(1)).save(returnWithtransactionBeingAddedToThePayeeValueTheObjectUserEntity());
+        verify(emailService,timeout(1)).sendEmail(MOCK_EMAIL,MOCK_TRANSACTION_AMOUNT,MOCK_NAME);
         verify(userRepository,timeout(1)).save(returnWithTheTransactionBeingDiscountedToThePayerValueTheObjectUserEntity());
     }
 
