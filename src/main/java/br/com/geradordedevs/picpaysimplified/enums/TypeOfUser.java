@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum TypeOfUser {
 
-    USER("usuario"),
-    SHOPKEEPER("lojista");
+    USER("user"),
+    SHOPKEEPER("shopkeeper");
 
     private String status;
 }
