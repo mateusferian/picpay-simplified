@@ -14,11 +14,11 @@ what do you need to run the project?
 ### how can we download the application?
 #### SSH
 ```
-git@github.com:PicPay/picpay-desafio-backend.git
+git@github.com:mateusferian/picpay-simplified.git
 ```
 #### HTTPs
 ```
-https://github.com/PicPay/picpay-desafio-backend.git
+https://github.com/mateusferian/picpay-simplified.git
 ```
 
 ### code versioning best practices
