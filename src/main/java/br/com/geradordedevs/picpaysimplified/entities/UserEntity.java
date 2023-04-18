@@ -35,9 +35,8 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "UserRequestDTO{" +
+                "name='" + name + '\'' +
                 ", typeOfUser=" + typeOfUser +
                 ", email='" + email + '\'' +
                 '}';
