@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: picpay-simplified-api
+    entrypoint: [ "sh", "-c", "java -cp app:app/lib/*  br.com.geradordedevs.picpaysimplified.PicPaySimplifiedApplication" ]
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://picpay-simplified-db:3306/db_picpay_simplified?createDatabaseIfNotExist=true
+      - DATABASE_HOST=db_picpay_simplified
+      - DATABASE_USER=db_picpay_simplified
+      - DATABASE_PASSWORD=123456
+      - DATABASE_NAME=db_picpay_simplified
+      - DATABASE_PORT=3306
+
+    depends_on:
+      - db-picpay-simplified
+
+  db-picpay-simplified:
+    image: mysql:8.0
+    container_name: picpay-simplified-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=db_picpay_simplified
+      - MYSQL_USER=db_picpay_simplified
+      - MYSQL_PASSWORD=123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/db:/data/db
+
+
