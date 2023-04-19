@@ -1,7 +1,31 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.7'
+	id 'org.springframework.boot' version '2.7.10'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "org.sonarqube" version "3.5.0.2730"
+	id "jacoco"
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+	}
+}
+test.finalizedBy jacocoTestReport
+
+sonarqube {
+	properties {
+		property("sonar.coverage.exclusions",
+				"**/PicPaySimplifiedApplication.java,"+
+						"**/configurations/**," +
+						"**/exceptions/**," +
+						"**/dtos/**," +
+						"**/mappers/**," +
+						"**/entities/**," +
+						"**/entities/**," +
+						"**/repositories/**"
+		)
+	}
 }
 
 group = 'br.com.gerador-de-devs'
@@ -11,12 +35,21 @@ sourceCompatibility = '17'
 repositories {
 	mavenCentral()
 }
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.32'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.1'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.0.0'
+	implementation 'org.jacoco:org.jacoco.agent:0.7.9'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.0'
+	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	testImplementation 'org.powermock:powermock-module-junit4:2.0.2'
+	testImplementation 'org.powermock:powermock-api-mockito2:2.0.2'
+	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.5'
 }
